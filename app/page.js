@@ -1,103 +1,336 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { Shield, PieChart, DollarSign, BarChart2, ArrowRight, Mail, PhoneCall } from 'lucide-react'
+import Testimonials from './component/Testimonials'
+import ServicesSection from './component/Services'
+
+const images = [
+  { src: '/img/1 (12).jpeg', alt: 'Financial Planning', delay: 0.1, colSpan: 'col-span-2', rowSpan: 'row-span-1' },
+  { src: '/img/1 (17).jpeg', alt: 'Retirement Planning', delay: 0.2, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
+  { src: '/img/1 (11).jpeg', alt: 'Expert Consultation', delay: 0.3, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
+  { src: '/img/1 (33).jpeg', alt: 'Investment Strategy', delay: 0.4, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
+  { src: '/img/1 (40).jpeg', alt: 'Wealth Management', delay: 0.6, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
+]
+
+const services = [
+  {
+    title: 'Wealth Creation Planning',
+    icon: <DollarSign className="w-10 h-10 text-yellow-500" />,
+  },
+  {
+    title: 'Life Insurance Solutions',
+    icon: <Shield className="w-10 h-10 text-yellow-500" />,
+  },
+  {
+    title: 'Retirement Planning',
+    icon: <PieChart className="w-10 h-10 text-yellow-500" />,
+  },
+  {
+    title: 'Mutual Fund Investments',
+    icon: <BarChart2 className="w-10 h-10 text-yellow-500" />,
+  },
+]
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  }),
+}
+
+export default function HeroGridSection() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div
+    style={{fontFamily: 'var(--font-oswald)'}}
+    className="relative min-h-screen bg-[#0f0408] text-white font-sans overflow-hidden">
+      {/* Vertical decorative lines */}
+      <div className="absolute inset-0 z-10 flex justify-between pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="w-[2px] bg-yellow-600/10 h-full" />
+        ))}
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <section className="relative z-20 py-20 px-4 md:px-10">
+        <div className="text-center mb-12">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-bold leading-tight"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            Your Trusted Partner  
+            <br />
+            on the <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Road to Wealth</span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="mt-6 text-lg text-white/80 max-w-2xl mx-auto"
+          >
+            ASSTHA Financial Services provides expert guidance to help you achieve financial security and prosperity
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] gap-4 max-w-7xl mx-auto">
+          {images.map((img, i) => (
+            <motion.div
+              key={i}
+              custom={i}
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              className={`overflow-hidden rounded-xl bg-white/5 shadow-lg backdrop-blur-lg border border-white/10 hover:border-yellow-400/30 transition-all duration-300 ${img.colSpan} ${img.rowSpan}`}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={600}
+                height={400}
+                className="w-full h-full object-cover rounded-xl hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+          ))}
+          
+          {/* Premium CTA Card */}
+          <motion.div
+            custom={7}
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            className="col-span-2 row-span-2 rounded-xl bg-gradient-to-br from-yellow-900/70 to-yellow-800/90 p-8 flex flex-col justify-between shadow-2xl border border-yellow-400/20"
+          >
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Ready to secure your financial future?</h3>
+              <p className="text-yellow-100/90 mb-6">
+                With 31+ years of experience, Surajit Saha and his team will create a personalized plan for your wealth creation.
+              </p>
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 py-4 rounded-lg font-medium text-lg shadow-lg hover:shadow-yellow-500/30 transition-all"
+            >
+              Free Financial Consultation
+            </motion.button>
+          </motion.div>
+          
+          {/* Stats Card */}
+          <motion.div
+            custom={8}
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            className="col-span-1 row-span-1 rounded-xl bg-white/5 backdrop-blur-lg p-6 border border-white/10 flex flex-col justify-center"
+          >
+            <div className="text-4xl font-bold text-yellow-400 mb-2">2500+</div>
+            <p className="text-sm text-white/80">Clients Served</p>
+          </motion.div>
+          
+          {/* Client Logos Mini-Card */}
+          <motion.div
+            custom={9}
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            className="col-span-1 row-span-1 rounded-xl bg-white/5 backdrop-blur-lg p-4 border border-white/10 flex items-center justify-center"
+          >
+            <div className="text-xs uppercase tracking-widest text-white/70 text-center">
+              Recognized by LIC & MDRT
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Floating CTA at bottom */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-white/70 mb-6">Want to know more about our services?</p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 bg-transparent border-2 border-yellow-400/50 text-yellow-400 rounded-full font-medium hover:bg-yellow-400/10 transition-all"
+          >
+            Contact Us Now
+          </motion.button>
+        </motion.div>
+      </section>
+
+      <section className="text-white px-4 md:px-10 py-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
+        {/* Left Content */}
+        <div>
+          <h4 className="text-sm font-semibold text-white/60 tracking-wider mb-2">OUR SERVICES</h4>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            Comprehensive Financial <br className="hidden md:block" /> Solutions
+          </h2>
+          <p className="text-white/70 mb-4">
+            With over three decades of experience in wealth management, we provide tailored financial solutions to help you achieve your life goals.
+          </p>
+          <p className="text-white/70">
+            Our approach combines deep industry knowledge with personalized attention to create strategies that grow and protect your wealth.
+          </p>
+          
+          <div className="mt-8">
+            <h5 className="font-bold mb-2">Contact Information:</h5>
+            <p className="text-white/80">Email: assthafinancialservices@gmail.com</p>
+            <p className="text-white/80">Phone: +91 6289005688</p>
+            <p className="text-white/80">Main Office: 621, Sarat Chatterjee Road, Howrah – 711102</p>
+            <p className="text-white/80">Branch Office: 143, Chandmari Road, Howrah – 711109</p>
+          </div>
+        </div>
+
+        {/* Service Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="border border-white/10 p-6 rounded-xl hover:border-yellow-500 transition-all duration-300 flex flex-col gap-4"
+            >
+              {service.icon}
+              <h3 className="font-semibold text-lg">{service.title}</h3>
+              <ArrowRight className="w-5 h-5 text-white mt-auto" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+
+    <section
+      className="relative bg-black bg-fixed text-white py-20 px-4 md:px-16 bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/img/1 (6).jpeg')",
+      }}
+    >
+      <ServicesSection/>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/90 z-0" />
+
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-12">
+        {/* Left Image with Label */}
+        <div className="relative w-full rounded-xl overflow-hidden">
+          <Image
+            src="/img/1 (12).jpeg"
+            alt="Surajit Saha"
+            width={600}
+            height={600}
+            className="rounded-xl object-cover w-full h-full"
+          />
+          <div className="absolute bottom-6 left-6 bg-black text-white text-xl font-semibold p-4 rounded-lg max-w-xs">
+            31+ Years of <br /> Financial Expertise
+          </div>
+        </div>
+
+        {/* Right Content */}
+        <div>
+          <h5 className="text-sm font-semibold tracking-wider text-white/60 mb-2">
+            ABOUT SURAJIT SAHA
+          </h5>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Your Trusted Financial Advisor
+          </h2>
+          <p className="text-white/70 mb-8">
+            As a Corporate Club Member of LIC of India and 16-time MDRT qualifier (including 6 Court of the Table honors), 
+            I bring unparalleled expertise to your financial planning needs.
+          </p>
+
+          <div className="space-y-4 mb-6">
+            <div className="flex items-start gap-2">
+              <span className="font-bold text-white/80">01.</span>
+              <p className="font-semibold">Personalized Wealth Management Strategies</p>
+            </div>
+            <div className="flex items-start gap-2 border-t border-white/10 pt-4">
+              <span className="font-bold text-white/80">02.</span>
+              <p className="font-semibold">Tax-Efficient Investment Solutions</p>
+            </div>
+            <div className="flex items-start gap-2 border-t border-white/10 pt-4">
+              <span className="font-bold text-white/80">03.</span>
+              <p className="font-semibold">Comprehensive Retirement Planning</p>
+            </div>
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-full font-semibold shadow"
+          >
+            Know More About Me
+          </motion.button>
+        </div>
+      </div>
+
+      {/* Bottom Stats */}
+      <div className="relative z-10 mt-20 grid grid-cols-2 md:grid-cols-4 text-center gap-8">
+        {[
+          { count: '2500', label: 'Clients' },
+          { count: '31', label: 'Years Experience' },
+          { count: '16', label: 'MDRT Honors' },
+          { count: '6', label: 'Court of the Table' },
+        ].map((item, index) => (
+          <div key={index} className="flex flex-col items-center">
+            <h2 className="text-6xl text-white/10 font-extrabold">{item.count}</h2>
+            <p className="text-lg font-bold">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Testimonials/>
+
+    <section className="relative bg-yellow-600 text-white py-20 px-4 md:px-16">
+      <div className="max-w-6xl mx-auto  p-10   text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
+          Ready to Secure Your Financial Future?
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg md:text-xl text-gray-300 mb-8"
+        >
+          Reach out to <strong>ASSTHA Financial Services</strong> and let our
+          experts help you manage your portfolio and LIC needs today.
+        </motion.p>
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+          <a
+            href="mailto:assthafinancialservices@gmail.com"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 transition"
+          >
+            <Mail size={18} /> Email Us
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="tel:6289005688"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition"
           >
-            Read our docs
+            <PhoneCall size={18} /> Call Now
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+    </section>
     </div>
-  );
+  )
 }
