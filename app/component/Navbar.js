@@ -44,15 +44,19 @@ export default function Navbar() {
           </nav>
 
           {/* Logo */}
-          <div className="flex-shrink-0 sm:-ml-24 flex items-center">
+          <div className="flex-shrink-0 sm:-ml-20 py-5 items-center">
   <Image
     src="/alogo.png"
     alt="Logo"
     width={120}
     height={120}
-    className="w-32 py-5 sm:w-44 md:w-60 h-auto"
+    className="w-32  sm:w-44 md:w-60 h-auto"
     priority
   />
+
+  <span className='-ml-3 hidden sm:block'>
+    A Service hub of Trust, Honesty & Acceptability
+  </span>
 </div>
 
 
