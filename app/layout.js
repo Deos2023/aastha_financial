@@ -24,11 +24,8 @@ const oswald = Oswald({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        suppressHydrationWarning
-        className={`${ephesis.variable} ${protestGuerrilla.variable} ${oswald.variable}`}
-      >
+ <html lang="en" className={`${ephesis.variable} ${protestGuerrilla.variable} ${oswald.variable}`}>
+      <body suppressHydrationWarning>
         <Navbar />
         {children}
         <ScrollToTopButton />

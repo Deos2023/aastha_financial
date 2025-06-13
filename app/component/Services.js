@@ -26,19 +26,19 @@ export default function ServicesSection() {
         >
           {[
             {
-              title: 'Financial Advisory',
+              title: 'Insurance Solutions',
               img: '/img1.jpg',
             },
             {
-              title: 'Need Analysis',
+              title: 'Mutual Funds Investment',
               img: '/img2.jpg',
             },
             {
-              title: 'Portfolio Management',
+              title: 'Retirement Planning',
               img: '/img3.jpg',
             },
             {
-              title: 'Claim Settlement',
+              title: 'Wealth Creation Planning',
               img: '/img1.jpg',
             },
           ].map((service, idx) => (

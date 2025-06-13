@@ -9,7 +9,8 @@ import Link from 'next/link'
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const navItems = ['Home', 'about', 'services', 'moments',"contact"]
+  
+  const navItems = ['Home', 'About', 'Services', 'Moments', 'Contact']
 
   return (
     <header
@@ -18,7 +19,7 @@ export default function Navbar() {
       }}
       className="bg-[#0f0408] text-white"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10 py-3 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10  ">
         <div className="flex justify-between items-center">
           {/* Nav Links */}
           <nav className="hidden md:flex space-x-6 items-center">
@@ -43,10 +44,17 @@ export default function Navbar() {
           </nav>
 
           {/* Logo */}
-          <div className="flex-shrink-0 sm:-ml-24
-           flex items-center">
-            <Image src="/logo.png" alt="Logo" width={200} height={200} />
-          </div>
+          <div className="flex-shrink-0 sm:-ml-24 flex items-center">
+  <Image
+    src="/alogo.png"
+    alt="Logo"
+    width={120}
+    height={120}
+    className="w-32 py-5 sm:w-44 md:w-60 h-auto"
+    priority
+  />
+</div>
+
 
           {/* Right Icons */}
           <div className="flex items-center space-x-4">

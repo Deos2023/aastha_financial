@@ -71,14 +71,14 @@ export default function HeroGridSection() {
             on the <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Road to Wealth</span>
           </motion.h1>
           
-          <motion.p 
+          {/* <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mt-6 text-lg text-white/80 max-w-2xl mx-auto"
           >
             ASSTHA Financial Services provides expert guidance to help you achieve financial security and prosperity
-          </motion.p>
+          </motion.p> */}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] gap-4 max-w-7xl mx-auto">
@@ -107,8 +107,14 @@ export default function HeroGridSection() {
             variants={fadeIn}
             initial="hidden"
             animate="visible"
-            className="col-span-2 row-span-2 rounded-xl bg-gradient-to-br from-yellow-900/70 to-yellow-800/90 p-8 flex flex-col justify-between shadow-2xl border border-yellow-400/20"
+            className="col-span-2 row-span-2 items-center text-center rounded-xl bg-gradient-to-br from-yellow-900/70 to-yellow-800/90 p-8 flex flex-col justify-between shadow-2xl border border-yellow-400/20"
           >
+            <div>
+
+              <h1 className='text-3xl font-bold'>RECOGNIZED BY LIC & MDRT(USA)</h1>
+            </div>
+
+            
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to secure your financial future?</h3>
               <p className="text-yellow-100/90 mb-6">
@@ -157,20 +163,34 @@ export default function HeroGridSection() {
           transition={{ delay: 1 }}
           className="mt-16 text-center"
         >
-          <p className="text-white/70 mb-6">Want to know more about our services?</p>
+          <p className="text-white/70 mb-6">Know more about our services</p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 bg-transparent border-2 border-yellow-400/50 text-yellow-400 rounded-full font-medium hover:bg-yellow-400/10 transition-all"
           >
-            Contact Us Now
+            Explore
           </motion.button>
         </motion.div>
       </section>
 
+      <section className=" py-10 px-4 text-center">
+  <h2 className="text-2xl md:text-3xl font-semibold  mb-8">
+    We are associated with
+  </h2>
+
+  <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+    <img src="/brand/lic.png" alt="LIC Logo" className="h-16 md:h-20 object-contain" />
+    <img src="/brand/wealth.png" alt="NJ Wealth Logo" className="h-16 md:h-20 object-contain" />
+    <img src="/brand/star.png" alt="Star Health Logo" className="h-16 md:h-20 object-contain" />
+    <img src="/brand/icic.png" alt="ICICI Lombard Logo" className="h-16 md:h-20 object-contain" />
+  </div>
+</section>
+
+{/* 
       <section className="text-white px-4 md:px-10 py-20">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
-        {/* Left Content */}
+        
         <div>
           <h4 className="text-sm font-semibold text-white/60 tracking-wider mb-2">OUR SERVICES</h4>
           <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -192,7 +212,7 @@ export default function HeroGridSection() {
           </div>
         </div>
 
-        {/* Service Cards */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {services.map((service, i) => (
             <motion.div
@@ -210,7 +230,7 @@ export default function HeroGridSection() {
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
 
 
 
@@ -286,7 +306,7 @@ export default function HeroGridSection() {
           { count: '6', label: 'Court of the Table' },
         ].map((item, index) => (
           <div key={index} className="flex flex-col items-center">
-            <h2 className="text-6xl text-white/10 font-extrabold">{item.count}</h2>
+            <h2 className="text-6xl text-white/40 font-extrabold">{item.count}</h2>
             <p className="text-lg font-bold">{item.label}</p>
           </div>
         ))}
@@ -331,6 +351,53 @@ export default function HeroGridSection() {
         </div>
       </div>
     </section>
+
+    <section className="bg-black text-white py-16 px-4 md:px-10 text-center">
+  <h2 className="text-3xl md:text-4xl font-bold mb-10">Add Financial Calculators</h2>
+
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center mb-8">
+    <div className="border border-yellow-400 py-4 px-2 rounded hover:bg-yellow-600 cursor-pointer transition">
+      <p>SIP Growth</p>
+    </div>
+    <div className="border border-yellow-400 py-4 px-2 rounded hover:bg-yellow-600 cursor-pointer transition">
+      <p>SIP Need</p>
+    </div>
+    <div className="border border-yellow-400 py-4 px-2 rounded hover:bg-yellow-600 cursor-pointer transition">
+      <p>Plan Your Retirement</p>
+    </div>
+    <a
+      href="https://www.sc.com/in/insurance/insurance-need-calculator/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border border-yellow-400 py-4 px-2 rounded hover:bg-yellow-600 cursor-pointer transition"
+    >
+      <p>Insurance Need</p>
+    </a>
+  </div>
+
+  <div className="space-y-4">
+    <a
+      href="https://www.njwealth.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-purple-400 underline hover:text-purple-300"
+    >
+      Open NJ E-Wealth Account: Invest with one of India's Largest Mutual Fund Distributor
+    </a>
+    <br />
+    <a
+      href="https://www.sc.com/in/insurance/insurance-need-calculator/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-purple-400 underline hover:text-purple-300"
+    >
+      https://www.sc.com/in/insurance/insurance-need-calculator/
+    </a>
+  </div>
+
+  <p className="mt-6 font-semibold">Follow the links</p>
+</section>
+
     </div>
   )
 }
