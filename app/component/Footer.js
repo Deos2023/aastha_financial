@@ -66,7 +66,7 @@ export default function Footer() {
           >
             <h3 className="text-xl font-semibold mb-6" style={{ fontFamily: 'var(--font-oswald)' }}>Quick Links</h3>
             <ul className="space-y-3 text-sm">
-              {['Home', 'about', 'services', 'moments', 'contact'].map((item, idx) => (
+              {['Home', 'about', 'services','blog', 'moments', 'contact'].map((item, idx) => (
                 <li key={idx}>
                   <a href={`/${item === 'Home' ? '' : item.toLowerCase().replace(/ /g, '-')}`} className="text-gray-300 hover:text-white transition">
                     {item}

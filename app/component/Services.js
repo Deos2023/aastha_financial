@@ -80,7 +80,7 @@ export default function ServicesSection() {
             <li>KYC Updation</li>
             <li>Maturity Claim</li>
             <li>Money Back</li>
-            <li>Death Claim</li>
+            {/* <li>Death Claim</li> */}
           </ul>
         </motion.div>
       </div>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 import {
   PieChart,
   Briefcase,
@@ -39,7 +40,8 @@ const serviceCategories = [
       'Mutual Fund Investments',
       'Portfolio Management',
       'Tax Planning Strategies',
-      'Estate Planning'
+      'Estate Planning',
+      'Child Education Plans',
     ],
     description: 'Comprehensive strategies to grow and protect your wealth through all life stages'
   },
@@ -50,8 +52,8 @@ const serviceCategories = [
       'Life Insurance Plans',
       'Health Insurance',
       'Term Insurance',
-      'Child Education Plans',
-      'Pension Plans'
+      
+      
     ],
     description: 'Tailored protection plans to secure your family\'s financial future'
   },
@@ -91,11 +93,11 @@ const specializedServices = [
     icon: <Globe className="w-8 h-8 text-yellow-500" />,
     description: 'Specialized financial solutions for Non-Resident Indians',
   },
-  {
-    title: 'Home Loan Advisory',
-    icon: <Home className="w-8 h-8 text-yellow-500" />,
-    description: 'Expert guidance on home financing and mortgage solutions',
-  },
+  // {
+  //   title: 'Home Loan Advisory',
+  //   icon: <Home className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Expert guidance on home financing and mortgage solutions',
+  // },
   {
     title: 'Child Future Planning',
     icon: <Briefcase className="w-8 h-8 text-yellow-500" />,
@@ -118,38 +120,38 @@ const specializedServices = [
     icon: <FolderKanban className="w-8 h-8 text-yellow-500" />,
     description: 'Strategic asset allocation and tracking',
   },
-  {
-    title: 'Claim Settlement',
-    icon: <FileCheck className="w-8 h-8 text-yellow-500" />,
-    description: 'Hassle-free assistance in insurance claim processing',
-  },
+  // {
+  //   title: 'Claim Settlement',
+  //   icon: <FileCheck className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Hassle-free assistance in insurance claim processing',
+  // },
 
   // LIC Policy Holder Services
+  // {
+  //   title: 'Premium Collection',
+  //   icon: <Banknote className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Easy and timely premium payment options',
+  // },
+  // {
+  //   title: 'Nomination Change',
+  //   icon: <UserPlus className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Quick nomination update services',
+  // },
   {
-    title: 'Premium Collection',
-    icon: <Banknote className="w-8 h-8 text-yellow-500" />,
-    description: 'Easy and timely premium payment options',
-  },
-  {
-    title: 'Nomination Change',
-    icon: <UserPlus className="w-8 h-8 text-yellow-500" />,
-    description: 'Quick nomination update services',
-  },
-  {
-    title: 'Loan on Policy',
+    title: 'Loan ',
     icon: <Landmark className="w-8 h-8 text-yellow-500" />,
-    description: 'Loan facilities against life insurance policies',
+    description: 'Loan facilities against life insurance policies, Loan against Mutual Funds',
   },
-  {
-    title: 'Revival of Policy',
-    icon: <RefreshCcw className="w-8 h-8 text-yellow-500" />,
-    description: 'Assistance to reinstate lapsed policies',
-  },
-  {
-    title: 'Bank Details Updation',
-    icon: <Banknote className="w-8 h-8 text-yellow-500" />,
-    description: 'Update your banking info for seamless transactions',
-  },
+  // {
+  //   title: 'Revival of Policy',
+  //   icon: <RefreshCcw className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Assistance to reinstate lapsed policies',
+  // },
+  // {
+  //   title: 'Bank Details Updation',
+  //   icon: <Banknote className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Update your banking info for seamless transactions',
+  // },
   {
     title: 'Contact Details Updation',
     icon: <PhoneCall className="w-8 h-8 text-yellow-500" />,
@@ -160,21 +162,21 @@ const specializedServices = [
     icon: <BadgeCheck className="w-8 h-8 text-yellow-500" />,
     description: 'Update your KYC to comply with regulations',
   },
-  {
-    title: 'Maturity Claim',
-    icon: <FileSignature className="w-8 h-8 text-yellow-500" />,
-    description: 'Guided assistance to receive your maturity amount',
-  },
-  {
-    title: 'Money Back',
-    icon: <Smile className="w-8 h-8 text-yellow-500" />,
-    description: 'Timely money-back payouts from eligible policies',
-  },
-  {
-    title: 'Death Claim',
-    icon: <FileMinus className="w-8 h-8 text-yellow-500" />,
-    description: 'Compassionate help with death claim processing',
-  },
+  // {
+  //   title: 'Maturity Claim',
+  //   icon: <FileSignature className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Guided assistance to receive your maturity amount',
+  // },
+  // {
+  //   title: 'Money Back',
+  //   icon: <Smile className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Timely money-back payouts from eligible policies',
+  // },
+  // {
+  //   title: 'Death Claim',
+  //   icon: <FileMinus className="w-8 h-8 text-yellow-500" />,
+  //   description: 'Compassionate help with death claim processing',
+  // },
 ]
 
 const processSteps = [
@@ -219,6 +221,7 @@ const fadeIn = {
 }
 
 export default function ServicesPage() {
+  const router = useRouter();
   return (
     <div style={{ fontFamily: 'var(--font-oswald)' }} className="relative bg-[#0f0408] text-white overflow-hidden">
       {/* Hero Section */}
@@ -331,8 +334,8 @@ export default function ServicesPage() {
                   <h3 className="text-xl font-bold">{service.title}</h3>
                 </div>
                 <p className="text-white/80 mb-4">{service.description}</p>
-                <button className="text-yellow-400 hover:text-yellow-300 text-sm font-medium flex items-center gap-2">
-                  Explore Service <ArrowRight className="w-4 h-4" />
+                <button onClick={() => router.push('/blog')} className="text-yellow-400 hover:text-yellow-300 text-sm font-medium flex items-center gap-2">
+                  Explore  <ArrowRight className="w-4 h-4" />
                 </button>
               </motion.div>
             ))}

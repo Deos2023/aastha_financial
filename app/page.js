@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 import { Shield, PieChart, DollarSign, BarChart2, ArrowRight, Mail, PhoneCall } from 'lucide-react'
 import Testimonials from './component/Testimonials'
 import ServicesSection from './component/Services'
+import SipCalculator from './component/SipCalculator';
 
 const images = [
   { src: '/img/1 (12).jpeg', alt: 'Financial Planning', delay: 0.1, colSpan: 'col-span-2', rowSpan: 'row-span-1' },
@@ -47,6 +49,7 @@ const fadeIn = {
 }
 
 export default function HeroGridSection() {
+   const router = useRouter();
   return (
     <div
     style={{fontFamily: 'var(--font-oswald)'}}
@@ -151,7 +154,8 @@ export default function HeroGridSection() {
             className="col-span-1 row-span-1 rounded-xl bg-white/5 backdrop-blur-lg p-4 border border-white/10 flex items-center justify-center"
           >
             <div className="text-xs uppercase tracking-widest text-white/70 text-center">
-              Recognized by LIC & MDRT
+              <h1 className='text-xl'>160 cr +</h1> <br />
+              SAUM
             </div>
           </motion.div>
         </div>
@@ -164,13 +168,14 @@ export default function HeroGridSection() {
           className="mt-16 text-center"
         >
           <p className="text-white/70 mb-6">Know more about our services</p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-transparent border-2 border-yellow-400/50 text-yellow-400 rounded-full font-medium hover:bg-yellow-400/10 transition-all"
-          >
-            Explore
-          </motion.button>
+           <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={() => router.push('/services')}
+      className="px-8 py-3 bg-transparent border-2 border-yellow-400/50 text-yellow-400 rounded-full font-medium hover:bg-yellow-400/10 transition-all"
+    >
+      Explore
+    </motion.button>
         </motion.div>
       </section>
 
@@ -180,10 +185,10 @@ export default function HeroGridSection() {
   </h2>
 
   <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-    <img src="/brand/lic.png" alt="LIC Logo" className="h-16 md:h-20 object-contain" />
-    <img src="/brand/wealth.png" alt="NJ Wealth Logo" className="h-16 md:h-20 object-contain" />
-    <img src="/brand/star.png" alt="Star Health Logo" className="h-16 md:h-20 object-contain" />
-    <img src="/brand/icic.png" alt="ICICI Lombard Logo" className="h-16 md:h-20 object-contain" />
+    <img src="/brand/1.png" alt="LIC Logo" className="h-16 md:h-28 object-contain" />
+    <img src="/brand/2.png" alt="NJ Wealth Logo" className="h-16 md:h-28 object-contain" />
+    <img src="/brand/3.png" alt="Star Health Logo" className="h-16 md:h-28 object-contain" />
+    <img src="/brand/4.png" alt="ICICI Lombard Logo" className="h-16 md:h-28 object-contain" />
   </div>
 </section>
 
@@ -248,7 +253,7 @@ export default function HeroGridSection() {
         {/* Left Image with Label */}
         <div className="relative w-full rounded-xl overflow-hidden">
           <Image
-            src="/img/1 (12).jpeg"
+            src="/img/1 (26).jpeg"
             alt="Surajit Saha"
             width={600}
             height={600}
@@ -352,8 +357,8 @@ export default function HeroGridSection() {
       </div>
     </section>
 
-    <section className="bg-black text-white py-16 px-4 md:px-10 text-center">
-  <h2 className="text-3xl md:text-4xl font-bold mb-10">Add Financial Calculators</h2>
+    {/* <section className="bg-black text-white py-16 px-4 md:px-10 text-center">
+  <h2 className="text-3xl md:text-4xl font-bold mb-10"> Financial Calculators</h2>
 
   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center mb-8">
     <div className="border border-yellow-400 py-4 px-2 rounded hover:bg-yellow-600 cursor-pointer transition">
@@ -396,7 +401,8 @@ export default function HeroGridSection() {
   </div>
 
   <p className="mt-6 font-semibold">Follow the links</p>
-</section>
+</section> */}
+<SipCalculator />
 
     </div>
   )

@@ -10,7 +10,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   
-  const navItems = ['Home', 'About', 'Services', 'Moments', 'Contact']
+  const navItems = ['Home', 'About', 'Services','Blog', 'Moments', 'Contact']
 
   return (
     <header

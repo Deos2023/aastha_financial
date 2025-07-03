@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { X } from 'lucide-react'
 
-const operationImages = Array.from({ length: 41 }, (_, i) => `/img/1 (${i + 1}).jpeg`)
+const operationImages = Array.from({ length: 39 }, (_, i) => `/img/1 (${i + 1}).jpeg`)
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
