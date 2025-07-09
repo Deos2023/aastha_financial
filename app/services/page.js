@@ -40,7 +40,7 @@ const serviceCategories = [
       'Mutual Fund Investments',
       'Portfolio Management',
       'Tax Planning Strategies',
-      'Estate Planning',
+      'Virtual Estate Planning',
       'Child Education Plans',
     ],
     description: 'Comprehensive strategies to grow and protect your wealth through all life stages'
@@ -64,7 +64,6 @@ const serviceCategories = [
       'Equity Investments',
       'Debt Instruments',
       'Systematic Investment Plans',
-      'Alternative Investments',
       'Risk Profiling'
     ],
     description: 'Expert guidance to build and optimize your investment portfolio'
@@ -140,7 +139,7 @@ const specializedServices = [
   {
     title: 'Loan ',
     icon: <Landmark className="w-8 h-8 text-yellow-500" />,
-    description: 'Loan facilities against life insurance policies, Loan against Mutual Funds',
+    description: 'Loan facilities against life insurance policies ............................ Loan against Mutual Funds',
   },
   // {
   //   title: 'Revival of Policy',

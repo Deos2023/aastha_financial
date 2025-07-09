@@ -9,10 +9,10 @@ import ServicesSection from './component/Services'
 import SipCalculator from './component/SipCalculator';
 
 const images = [
-  { src: '/img/1 (12).jpeg', alt: 'Financial Planning', delay: 0.1, colSpan: 'col-span-2', rowSpan: 'row-span-1' },
+  { src: '/img/1 (26).jpeg', alt: 'Financial Planning', delay: 0.1, colSpan: 'col-span-2', rowSpan: 'row-span-1' },
   { src: '/img/1 (17).jpeg', alt: 'Retirement Planning', delay: 0.2, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
   { src: '/img/1 (11).jpeg', alt: 'Expert Consultation', delay: 0.3, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
-  { src: '/img/1 (33).jpeg', alt: 'Investment Strategy', delay: 0.4, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
+  { src: '/img/1 (34).jpeg', alt: 'Investment Strategy', delay: 0.4, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
   { src: '/img/1 (40).jpeg', alt: 'Wealth Management', delay: 0.6, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
 ]
 
@@ -154,8 +154,8 @@ export default function HeroGridSection() {
             className="col-span-1 row-span-1 rounded-xl bg-white/5 backdrop-blur-lg p-4 border border-white/10 flex items-center justify-center"
           >
             <div className="text-xs uppercase tracking-widest text-white/70 text-center">
-              <h1 className='text-xl'>160 cr +</h1> <br />
-              SAUM
+             <div className="text-4xl font-bold text-yellow-400 mb-2">160 cr+</div>
+             <p className="text-sm text-white/80">SAUM</p>
             </div>
           </motion.div>
         </div>
@@ -179,8 +179,8 @@ export default function HeroGridSection() {
         </motion.div>
       </section>
 
-      <section className=" py-10 px-4 text-center">
-  <h2 className="text-2xl md:text-3xl font-semibold  mb-8">
+      <section className="bg-white py-10 px-4 text-center">
+  <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-neutral-600">
     We are associated with
   </h2>
 
@@ -189,6 +189,7 @@ export default function HeroGridSection() {
     <img src="/brand/2.png" alt="NJ Wealth Logo" className="h-16 md:h-28 object-contain" />
     <img src="/brand/3.png" alt="Star Health Logo" className="h-16 md:h-28 object-contain" />
     <img src="/brand/4.png" alt="ICICI Lombard Logo" className="h-16 md:h-28 object-contain" />
+    <img src="/brand/niva.png" alt="Niva Bupa Logo" className="h-16 md:h-28 object-contain" />
   </div>
 </section>
 
