@@ -46,7 +46,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 sm:-ml-20 py-5 items-center">
   <Image
-    src="/alogo.png"
+    src="/alogo3.png"
     alt="Logo"
     width={120}
     height={120}
