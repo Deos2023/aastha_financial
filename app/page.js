@@ -13,7 +13,7 @@ const images = [
   { src: '/img/1 (17).jpeg', alt: 'Retirement Planning', delay: 0.2, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
   { src: '/img/1 (11).jpeg', alt: 'Expert Consultation', delay: 0.3, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
   { src: '/img/1 (34).jpeg', alt: 'Investment Strategy', delay: 0.4, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
-  { src: '/img/1 (40).jpeg', alt: 'Wealth Management', delay: 0.6, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
+  { src: '/img/1 (39).jpeg', alt: 'Wealth Management', delay: 0.6, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
 ]
 
 const services = [
