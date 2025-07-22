@@ -71,7 +71,7 @@ export default function HeroGridSection() {
           >
             Your Trusted Partner  
             <br />
-            on the <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Road to Wealth</span>
+            on the <span className=" text-yellow-400 ">Road to Wealth</span>
           </motion.h1>
           
           {/* <motion.p 
