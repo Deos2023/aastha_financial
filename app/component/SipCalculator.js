@@ -12,38 +12,57 @@ export default function FinancialCalculator() {
   // SIP Growth states
   const [monthlyInvestment, setMonthlyInvestment] = useState(10000);
   const [period, setPeriod] = useState(10);
+  
+  // Correct SIP Growth calculation
   const totalInvestment = monthlyInvestment * 12 * period;
+  const monthlyRate = returns / 100 / 12;
+  const totalMonths = period * 12;
   const estimatedValue = Math.round(
-    monthlyInvestment * ((Math.pow(1 + returns / 100 / 12, 12 * period) - 1) / (returns / 100 / 12)) * (1 + returns / 100 / 12)
+    monthlyInvestment * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate)
   );
 
   // SIP Need states
   const [targetAmount, setTargetAmount] = useState(10000000);
   const [needPeriod, setNeedPeriod] = useState(10);
+  
+  // Correct SIP Need calculation
   const adjustedTarget = targetAmount * Math.pow(1 + inflation / 100, needPeriod);
-  const monthlyRate = returns / 100 / 12;
-  const totalMonths = needPeriod * 12;
-  const sipAmount = Math.round(adjustedTarget * monthlyRate / (Math.pow(1 + monthlyRate, totalMonths) - 1));
-  const projectedInvestment = sipAmount * totalMonths;
+  const needMonthlyRate = returns / 100 / 12;
+  const needTotalMonths = needPeriod * 12;
+  const sipAmount = Math.round(
+    (adjustedTarget * needMonthlyRate) / 
+    (Math.pow(1 + needMonthlyRate, needTotalMonths) - 1)
+  );
+  const projectedInvestment = sipAmount * needTotalMonths;
 
   // Retirement Calculator states
   const [currentAge, setCurrentAge] = useState(30);
   const [retirementAge, setRetirementAge] = useState(60);
   const [monthlyExpense, setMonthlyExpense] = useState(50000);
   const [retirementYears, setRetirementYears] = useState(25);
+  
+  // Correct Retirement calculation
   const yearsToRetire = retirementAge - currentAge;
-  const inflatedExpense = monthlyExpense * Math.pow(1 + inflation / 100, yearsToRetire);
-  const annualInflated = inflatedExpense * 12;
+  const monthlyExpenseAtRetirement = monthlyExpense * Math.pow(1 + inflation / 100, yearsToRetire);
+  const annualExpenseAtRetirement = monthlyExpenseAtRetirement * 12;
+  
+  // Calculate retirement corpus using present value of growing annuity formula
+  const realRateOfReturn = (1 + returns/100) / (1 + inflation/100) - 1;
   const kittyAmount = Math.round(
-    annualInflated * 
-    ((1 - Math.pow(1 + inflation / 100, -retirementYears)) / 
-    ((returns / 100 - inflation / 100) / (1 + inflation / 100)))
+    annualExpenseAtRetirement * 
+    ((1 - Math.pow(1 + realRateOfReturn, -retirementYears)) / realRateOfReturn)
   );
+  
+  // Calculate monthly investment needed
+  const monthlyReturnRate = returns / 100 / 12;
+  const retirementMonths = yearsToRetire * 12;
   const retireMonthlyInvest = Math.round(
-    (kittyAmount * (returns / 100 / 12)) /
-      (Math.pow(1 + returns / 100 / 12, yearsToRetire * 12) - 1)
+    (kittyAmount * monthlyReturnRate) / 
+    (Math.pow(1 + monthlyReturnRate, retirementMonths) - 1)
   );
   const retireYearlyInvest = retireMonthlyInvest * 12;
+  
+  // Calculate one-time investment needed today
   const retireOneTime = Math.round(
     kittyAmount / Math.pow(1 + returns / 100, yearsToRetire)
   );
@@ -57,10 +76,16 @@ export default function FinancialCalculator() {
   const [currentInvestments, setCurrentInvestments] = useState(1000000);
   const [currentInsurance, setCurrentInsurance] = useState(5000000);
 
-  // Calculate insurance need
-  const incomeReplacement = (annualSalary - yearlyExpenses - otherIncome) * dependentsYears;
-  const inflationAdjustedNeed = Math.round(incomeReplacement * Math.pow(1 + inflation / 100, dependentsYears));
-  const insuranceNeed = Math.max(0, inflationAdjustedNeed + currentLoans - currentInvestments - currentInsurance);
+  // Correct Insurance Need calculation
+  const annualIncomeNeed = annualSalary - yearlyExpenses - otherIncome;
+  
+  // Calculate present value of future income needs (accounting for inflation)
+  const realReturn = (1 + returns/100) / (1 + inflation/100) - 1;
+  const incomeReplacement = Math.round(
+    annualIncomeNeed * ((1 - Math.pow(1 + realReturn, -dependentsYears)) / realReturn)
+  );
+  
+  const insuranceNeed = Math.max(0, incomeReplacement + currentLoans - currentInvestments - currentInsurance);
 
   return (
     <section className="bg-black text-white py-16 px-4 md:px-10">
@@ -226,7 +251,7 @@ export default function FinancialCalculator() {
                   <p><b>Total Investment:</b> ₹{totalInvestment.toLocaleString("en-IN")}</p>
                   <p><b>Wealth Gain:</b> ₹{(estimatedValue - totalInvestment).toLocaleString("en-IN")}</p>
                   <p><b>Growth Multiple:</b> {(estimatedValue / totalInvestment).toFixed(2)} times</p>
-                  <p><b>Annualized Return:</b> {((Math.pow(estimatedValue / totalInvestment, 1/period) - 1) * 100).toFixed(2)}%</p>
+                  <p><b>Annualized Return:</b> {returns}%</p>
                 </div>
               </div>
             </div>
@@ -255,8 +280,8 @@ export default function FinancialCalculator() {
                 <h4 className="text-lg font-semibold mb-2">Retirement Corpus Needed</h4>
                 <p className="text-3xl font-bold text-blue-700">₹{kittyAmount.toLocaleString("en-IN")}</p>
                 <div className="mt-4 space-y-2">
-                  <p><b>Monthly Expense at Retirement:</b> ₹{Math.round(inflatedExpense).toLocaleString("en-IN")}</p>
-                  <p><b>Annual Expense at Retirement:</b> ₹{Math.round(annualInflated).toLocaleString("en-IN")}</p>
+                  <p><b>Monthly Expense at Retirement:</b> ₹{Math.round(monthlyExpenseAtRetirement).toLocaleString("en-IN")}</p>
+                  <p><b>Annual Expense at Retirement:</b> ₹{Math.round(annualExpenseAtRetirement).toLocaleString("en-IN")}</p>
                   <p><b>Monthly SIP Needed:</b> ₹{retireMonthlyInvest.toLocaleString("en-IN")}</p>
                   <p><b>Yearly Investment Needed:</b> ₹{retireYearlyInvest.toLocaleString("en-IN")}</p>
                   <p><b>One-Time Investment Today:</b> ₹{retireOneTime.toLocaleString("en-IN")}</p>
@@ -272,8 +297,8 @@ export default function FinancialCalculator() {
                 <h4 className="text-lg font-semibold mb-2">Recommended Life Insurance Cover</h4>
                 <p className="text-3xl font-bold text-purple-700">₹{insuranceNeed.toLocaleString("en-IN")}</p>
                 <div className="mt-4 space-y-2">
+                  <p><b>Annual Income Need:</b> ₹{annualIncomeNeed.toLocaleString("en-IN")}</p>
                   <p><b>Income Replacement Need:</b> ₹{incomeReplacement.toLocaleString("en-IN")}</p>
-                  <p><b>Inflation Adjusted Need:</b> ₹{inflationAdjustedNeed.toLocaleString("en-IN")}</p>
                   <p><b>Current Loans:</b> ₹{currentLoans.toLocaleString("en-IN")}</p>
                   <p><b>Current Investments:</b> ₹{currentInvestments.toLocaleString("en-IN")}</p>
                   <p><b>Existing Insurance:</b> ₹{currentInsurance.toLocaleString("en-IN")}</p>
@@ -288,7 +313,7 @@ export default function FinancialCalculator() {
         </div>
       </div>
 
-      <p className="mt-6 font-semibold text-center">Follow the links</p>
+      {/* <p className="mt-6 font-semibold text-center">Follow the links</p> */}
     </section>
   )
 }
