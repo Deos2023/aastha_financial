@@ -19,65 +19,66 @@ export default function Navbar() {
       }}
       className="bg-[#0f0408] text-white"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10  ">
-        <div className="flex justify-between items-center">
-          {/* Nav Links */}
-          <nav className="hidden md:flex space-x-6 items-center">
-            {navItems.map((item) => {
-              const path = item.toLowerCase()
-              const isActive = pathname === `/${path}` || (pathname === '/' && path === 'home')
-              return (
-                <Link
-                  key={item}
-                  href={`/${path === 'home' ? '' : path}`}
-                  className={`relative text-sm font-semibold ${
-                    isActive ? 'text-white' : 'text-white/70 hover:text-white'
-                  }`}
-                >
-                  {item}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-white rounded" />
-                  )}
-                </Link>
-              )
-            })}
-          </nav>
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10">
+  <div className="flex justify-between items-center">
+    {/* Nav Links */}
+    <nav className="hidden md:flex space-x-6 items-center">
+      {navItems.map((item) => {
+        const path = item.toLowerCase()
+        const isActive = pathname === `/${path}` || (pathname === '/' && path === 'home')
+        return (
+          <Link
+            key={item}
+            href={`/${path === 'home' ? '' : path}`}
+            className={`relative text-sm font-semibold ${
+              isActive ? 'text-white' : 'text-white/70 hover:text-white'
+            }`}
+          >
+            {item}
+            {isActive && (
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-white rounded" />
+            )}
+          </Link>
+        )
+      })}
+    </nav>
 
-          {/* Logo */}
-          <div className="flex-shrink-0 sm:-ml-20 py-5 items-center">
-  <Image
-    src="/alogo4.png"
-    alt="Logo"
-    width={120}
-    height={120}
-    className="w-32  sm:w-44 md:w-60 h-auto"
-    priority
-  />
-
-  <span className='-ml-3 hidden sm:block'>
-    A Service hub of Trust, Honesty & Acceptability
-  </span>
-</div>
-
-
-          {/* Right Icons */}
-          <div className="flex items-center space-x-4">
-            <Grid className="w-5 h-5 hidden md:inline-block" />
-            <Link
-              href="tel:6289005688"
-              className="border border-white text-xs px-4 py-2 rounded-full hidden md:block"
-            >
-              Call - 6289005688
-            </Link>
-            <button
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
+    {/* Logo - Improved Version */}
+    <div className="flex-shrink-0 sm:-ml-20 py-5 flex flex-col items-center justify-center">
+      <div className="relative w-32 sm:w-44 md:w-60 h-auto">
+        <Image
+          src="/alogo4.png"
+          alt="Logo"
+          width={240}  // Increased for better quality
+          height={120}
+          className="w-full h-auto object-contain"
+          priority // Ensures priority loading
+          quality={90} // Increases quality (if using Next.js)
+        />
       </div>
+      <span className='mt-2 text-xs sm:text-sm text-center text-white/80 hidden sm:block'>
+        A Service hub of Trust, Honesty & Acceptability
+      </span>
+    </div>
+
+    {/* Right Icons */}
+    <div className="flex items-center space-x-4">
+      <Grid className="w-5 h-5 hidden md:inline-block" />
+      <Link
+        href="tel:6289005688"
+        className="border border-white text-xs px-4 py-2 rounded-full hidden md:block"
+      >
+        Call - 6289005688
+      </Link>
+      <button
+        className="md:hidden"
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      >
+        {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+    </div>
+  </div>
+</div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
